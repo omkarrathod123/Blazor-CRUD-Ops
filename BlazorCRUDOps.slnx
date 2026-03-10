@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="BlazorCRUDOps.Client/BlazorCRUDOps.Client.csproj" />
+  <Project Path="BlazorCRUDOps.Shared/BlazorCRUDOps.Shared.csproj" Id="39497672-0605-469f-9af1-ac3a60aa5ea8" />
   <Project Path="BlazorCRUDOps/BlazorCRUDOps.csproj" />
 </Solution>

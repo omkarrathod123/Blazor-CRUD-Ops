@@ -1,0 +1,59 @@
+﻿@page "/productpage"
+@inject HttpClient Http
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
+<div class="row mt-4">
+    <div class="col-6">
+        <h4 class="card-title text-primary">Product List</h4>
+    </div>
+    <div class="col-4 offset-2">
+        <a href="product-edit" class="btn-info form-control">Add New Product</a>
+    </div>
+</div>
+<br />
+@if(productList == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table table-sm table-bordered table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Product Category</th>
+                <th>Product Price</th>
+                <th>Product Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var product in productList.OrderBy(ManualResetEvent => ManualResetEvent.ProductId))
+            {
+                <tr>
+                    <td>@product.ProductId</td>
+                    <td>@product.ProductName</td>
+                    <td>@product.ProductDescription</td>
+                    <td>@product.ProductCategory</td>
+                    <td>@product.ProductPrice</td>
+                    <td>@product.ProductQuantity</td>
+                    <td>
+                        <a class="btn btn-success" href="/product-edit/@product.ProductId">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    List<Product> productList = new List<Product>();
+    private bool _initialized;
+    protected override async Task OnInitializedAsync()
+    {
+        if (_initialized) return;
+        _initialized = true;
+        productList = await Http.GetFromJsonAsync<List<Product>>("Products");
+    }
+}
