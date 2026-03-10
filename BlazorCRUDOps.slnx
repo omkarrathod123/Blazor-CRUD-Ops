@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BlazorCRUDOps.Client/BlazorCRUDOps.Client.csproj" />
+  <Project Path="BlazorCRUDOps/BlazorCRUDOps.csproj" />
+</Solution>
