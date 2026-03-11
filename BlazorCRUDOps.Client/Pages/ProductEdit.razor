@@ -1,0 +1,55 @@
+﻿@page "/product-edit"
+@page "/product-edit/{id:int}"
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender:false))
+@using BlazorCRUDOps.Shared
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@if (!ready)
+{
+    <p><em>Loading ...</em></p>
+}
+else
+{
+    <dir class="card m-3">
+        <h4 class="card-header">Product Edit / Entry Form</h4>
+        <div class="card-body">
+            <EditForm Model="@product" OnValidSubmit="@HandleValidSubmit" @onreset="HandleRest">
+                <DataAnnotationsValidator/>
+                <div class="form-group row">
+                    <div class="form-group col-6">
+                        <label>Product Name</label>
+                        <InputText @bind-Value="product.ProductName" class="form-control"/>
+                        <ValidationMessage For="@(()=>product.ProductName)"/>
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Product Description</label>
+                        <InputTextArea @bind-Value="product.ProductDescription" class="form-control" />
+                        <ValidationMessage For="@(() => product.ProductDescription)" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Product Category</label>
+                        <InputText @bind-Value="product.ProductCategory" class="form-control" />
+                        <ValidationMessage For="@(() => product.ProductCategory)" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Product Price</label>
+                        <InputNumber @bind-Value="product.ProductPrice" class="form-control" />
+                        <ValidationMessage For="@(() => product.ProductPrice)" />
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Product Quantity</label>
+                        <InputNumber @bind-Value="product.ProductQuantity" class="form-control" />
+                        <ValidationMessage For="@(() => product.ProductQuantity)" />
+                    </div>
+                </div>
+                <br/>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary mr-1">Save</button>
+                    <button class="btn btn-danger" title="Delete Task" @onclick="@DeleteProduct">Delete</button>
+                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                </div>
+            </EditForm>
+        </div>
+    </dir>
+}
