@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY . .
+COPY BlazorCRUDOps.Client/ .
 RUN dotnet restore
 
 RUN dotnet publish ./BlazorCRUDOps.Client/BlazorCRUDOps.Client.csproj -c Release -o /app/publish

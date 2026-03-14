@@ -5,7 +5,7 @@ EXPOSE 5000
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-COPY . .
+COPY BlazorCRUDOps/ .
 RUN dotnet restore
 
 RUN dotnet publish ./BlazorCRUDOps/BlazorCRUDOps.csproj -c Release -o /app/publish
