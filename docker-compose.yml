@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Server.Dockerfile
+    ports:
+      - "5000:5000"
+
+  client:
+    build:
+      context: .
+      dockerfile: Client.Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - server
