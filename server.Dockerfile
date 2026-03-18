@@ -5,7 +5,7 @@ WORKDIR /src
 COPY BlazorCRUDOps.Client/ .
 RUN dotnet restore
 
-RUN dotnet publish ./BlazorCRUDOps.Client/BlazorCRUDOps.Client.csproj -c Release -o /app/publish
+RUN dotnet publish ./BlazorCRUDOps.Client.csproj -c Release -o /app/publish
 
 # Stage 2: Serve with Nginx
 FROM nginx:alpine AS final

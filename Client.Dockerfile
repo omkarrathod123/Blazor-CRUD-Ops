@@ -8,7 +8,7 @@ WORKDIR /src
 COPY BlazorCRUDOps/ .
 RUN dotnet restore
 
-RUN dotnet publish ./BlazorCRUDOps/BlazorCRUDOps.csproj -c Release -o /app/publish
+RUN dotnet publish ./BlazorCRUDOps.csproj -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
